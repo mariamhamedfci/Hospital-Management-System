@@ -1,0 +1,46 @@
+{% load static %}
+{% include "Base.html" %}
+{% include "navigation.html" %}
+{% block content %}
+
+{% if error == "no" %}
+<script>
+    alert('Logged In Successfully')
+    window.location="{% url 'Home'%}"
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Invalid Login Try Again')
+</script>
+{% endif %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Admin Login</h2>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="uname">Admin Name</label>
+                            <input type="text" class="form-control" id="uname" name="uname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Password</label>
+                            <input type="password" class="form-control" id="pwd" name="pwd" required>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
